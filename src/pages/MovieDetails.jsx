@@ -1,11 +1,11 @@
-import { useParams } from 'react-router-dom';
-import { getMoviesById } from 'services/api';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { HiArrowLeft } from 'react-icons/hi';
+import { getMoviesById } from 'services/api';
 import css from './pages.module.css';
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({});
-  // const [searchParams, setSearchParams] = useSearchParams();
   const { id } = useParams();
 
   useEffect(() => {
@@ -24,14 +24,19 @@ const MovieDetails = () => {
   const { poster_path, release_date, vote_average, title, overview, genres } =
     movieDetails;
 
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
+  console.log(location);
+
   return (
     <div className={css.container}>
-      <button className={css.button} type="button">
+      <Link className={css.link} to={backLinkHref}>
+        <HiArrowLeft size="24" />
         Go back
-      </button>
+      </Link>
       <div className={css.movieDetailsContainer}>
         <img
-          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
           alt={title}
           width="250"
         />

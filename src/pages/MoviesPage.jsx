@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getMoviesByName } from 'services/api';
 import ListMovieItems from 'components/ListMovieItems/ListMovieItems';
 import SearchBar from 'components/SearchBar/SearchBar';
@@ -7,14 +8,14 @@ import css from './pages.module.css';
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState('');
+  const [searchParams] = useSearchParams();
 
   const onSearch = ({ search }) => {
-    setSearch(search);
-    setMovies([]);
+    setSearch(search) || setSearch(searchParams.get('query'));
   };
 
   useEffect(() => {
-    if (!search) return;
+    if (!search) setSearch(searchParams.get('query'));
 
     const getMovies = async () => {
       try {
@@ -25,7 +26,7 @@ const MoviesPage = () => {
       }
     };
     getMovies();
-  }, [search]);
+  }, [search, searchParams]);
 
   return (
     <div className={css.container}>
