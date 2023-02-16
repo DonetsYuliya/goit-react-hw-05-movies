@@ -1,0 +1,14 @@
+.container {
+  padding: 10px;
+}
+
+.movieDetailsContainer {
+  display: flex;
+  gap: 15px;
+}
+
+.button {
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-bottom: 10px;
+}
