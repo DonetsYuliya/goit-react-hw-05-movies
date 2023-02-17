@@ -5,7 +5,7 @@ import {
   NavLink,
   Outlet,
 } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { HiArrowLeft } from 'react-icons/hi';
 import { getMoviesById } from 'services/api';
 import css from './pages.module.css';
@@ -78,7 +78,9 @@ const MovieDetails = () => {
           </li>
         </ul>
       </div>
-      <Outlet />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

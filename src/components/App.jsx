@@ -3,9 +3,9 @@ import RoutesPage from './RoutesPage';
 
 export const App = () => {
   return (
-    <div>
+    <>
       <Layout />
       <RoutesPage />
-    </div>
+    </>
   );
 };
