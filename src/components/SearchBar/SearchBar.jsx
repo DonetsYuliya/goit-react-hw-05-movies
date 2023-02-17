@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const SearchBar = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
@@ -31,3 +32,7 @@ const SearchBar = ({ onSubmit }) => {
 };
 
 export default SearchBar;
+
+Searchbar.proptType = {
+  onSubmit: PropTypes.func.isRequired,
+};

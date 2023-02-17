@@ -2,6 +2,7 @@ import { getTrendingFilm } from 'services/api';
 import css from './pages.module.css';
 import { useState, useEffect } from 'react';
 import ListMovieItems from 'components/ListMovieItems/ListMovieItems';
+import PropTypes from 'prop-types';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -27,3 +28,12 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+HomePage.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+};

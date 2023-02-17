@@ -4,6 +4,7 @@ import { getMoviesByName } from 'services/api';
 import ListMovieItems from 'components/ListMovieItems/ListMovieItems';
 import SearchBar from 'components/SearchBar/SearchBar';
 import css from './pages.module.css';
+import PropTypes from 'prop-types';
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -37,3 +38,13 @@ const MoviesPage = () => {
 };
 
 export default MoviesPage;
+
+MoviesPage.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+  onSearch: PropTypes.func.isRequired,
+};
