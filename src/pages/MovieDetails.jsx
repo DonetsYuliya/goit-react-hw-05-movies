@@ -1,4 +1,10 @@
-import { useParams, Link, useLocation } from 'react-router-dom';
+import {
+  useParams,
+  Link,
+  useLocation,
+  NavLink,
+  Outlet,
+} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { HiArrowLeft } from 'react-icons/hi';
 import { getMoviesById } from 'services/api';
@@ -13,7 +19,6 @@ const MovieDetails = () => {
       try {
         const { data } = await getMoviesById(id);
         setMovieDetails(data);
-        console.log(data);
       } catch (error) {
         throw new Error(error);
       }
@@ -25,12 +30,11 @@ const MovieDetails = () => {
     movieDetails;
 
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
-  console.log(location);
+  const from = location.state?.from || '/';
 
   return (
     <div className={css.container}>
-      <Link className={css.link} to={backLinkHref}>
+      <Link className={css.link} to={from}>
         <HiArrowLeft size="24" />
         Go back
       </Link>
@@ -51,6 +55,30 @@ const MovieDetails = () => {
           <p>{genres && genres.map(({ name }) => name).join(', ')}</p>
         </div>
       </div>
+      <div className={css.menuDetails}>
+        <p>Additional information</p>
+        <ul>
+          <li>
+            <NavLink
+              className={css.link}
+              to={`/movies/${id}/cast`}
+              state={{ from }}
+            >
+              Cast
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={css.link}
+              to={`/movies/${id}/reviews`}
+              state={{ from }}
+            >
+              Reviews
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+      <Outlet />
     </div>
   );
 };

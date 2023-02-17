@@ -31,7 +31,7 @@ const MoviesPage = () => {
   return (
     <div className={css.container}>
       <SearchBar onSubmit={onSearch} />
-      {search && <ListMovieItems movies={movies} />}
+      <ListMovieItems movies={movies} />
     </div>
   );
 };

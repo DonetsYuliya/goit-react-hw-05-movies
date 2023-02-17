@@ -1,10 +1,11 @@
 .container {
-  padding: 10px;
+  padding: 0 10px;
 }
 
 .movieDetailsContainer {
   display: flex;
   gap: 15px;
+  padding: 8px 0;
 }
 
 .link {
@@ -20,4 +21,10 @@
 
 .link:hover {
   color: orangered;
+}
+
+.menuDetails {
+  padding-top: 2px;
+  padding-left: 10px;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.3);
 }
