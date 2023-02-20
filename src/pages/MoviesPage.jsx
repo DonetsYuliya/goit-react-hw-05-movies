@@ -12,11 +12,12 @@ const MoviesPage = () => {
   const [searchParams] = useSearchParams();
 
   const onSearch = ({ search }) => {
-    setSearch(search) || setSearch(searchParams.get('query'));
+    setSearch(search);
   };
 
   useEffect(() => {
     if (!search) setSearch(searchParams.get('query'));
+    if (!search) return;
 
     const getMovies = async () => {
       try {
@@ -45,6 +46,6 @@ MoviesPage.propTypes = {
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
-  onSearch: PropTypes.func.isRequired,
+  ),
+  onSearch: PropTypes.func,
 };

@@ -34,7 +34,15 @@ const Cast = () => {
     );
   });
 
-  return <ul>{castInfo}</ul>;
+  return (
+    <>
+      {useCast.length === 0 ? (
+        <p>We don't have any cast information for this movie.</p>
+      ) : (
+        <ul>{castInfo}</ul>
+      )}
+    </>
+  );
 };
 
 export default Cast;

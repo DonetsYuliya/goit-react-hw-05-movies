@@ -1,4 +1,5 @@
 import css from './list-movie-items.module.css';
+import { memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -23,7 +24,11 @@ const ListMovieItems = ({ movies }) => {
   return <ul>{items}</ul>;
 };
 
-export default ListMovieItems;
+export default memo(ListMovieItems);
+
+ListMovieItems.defaultProps = {
+  movies: [],
+};
 
 ListMovieItems.propTypes = {
   movies: PropTypes.arrayOf(

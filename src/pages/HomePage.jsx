@@ -35,5 +35,5 @@ HomePage.propTypes = {
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
 };
